@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SooperStore", "SooperStore\SooperStore.csproj", "{2399EFEC-1DF2-4A7E-B9C1-ED7B223D92C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{95A03DB2-F12E-4118-B807-68C5D5A32BF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{ECFB1984-CD38-46F3-A8D6-16933C8132A6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2399EFEC-1DF2-4A7E-B9C1-ED7B223D92C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2399EFEC-1DF2-4A7E-B9C1-ED7B223D92C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2399EFEC-1DF2-4A7E-B9C1-ED7B223D92C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2399EFEC-1DF2-4A7E-B9C1-ED7B223D92C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95A03DB2-F12E-4118-B807-68C5D5A32BF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95A03DB2-F12E-4118-B807-68C5D5A32BF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95A03DB2-F12E-4118-B807-68C5D5A32BF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95A03DB2-F12E-4118-B807-68C5D5A32BF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFB1984-CD38-46F3-A8D6-16933C8132A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFB1984-CD38-46F3-A8D6-16933C8132A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFB1984-CD38-46F3-A8D6-16933C8132A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFB1984-CD38-46F3-A8D6-16933C8132A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18991807-ED09-40C0-8E98-E77B19489F94}
+	EndGlobalSection
+EndGlobal
