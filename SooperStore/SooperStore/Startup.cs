@@ -35,6 +35,11 @@ namespace SooperStore
 
         services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddTransient<IDeveloperRepository, DeveloperRepository>();
+            services.AddTransient<ICosRepository, CosRepository>();
+            services.AddTransient<IProdusRepository, ProdusRepository>();
+            services.AddTransient<IRolRepository, RolRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserRolRepository, UserRolRepository>();
 
         }
 
