@@ -22,17 +22,8 @@ namespace SooperStore.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            try
-            {
-                var a = _produsRepository.GetAll();
-                return new OkObjectResult(a);
-            }
-            catch(Exception ex)
-            {
-                var abc = ex;
-            }
 
-            return Ok();
+            return Ok(_produsRepository.GetAll());
            
         }
 
@@ -79,16 +70,10 @@ namespace SooperStore.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                Produs produs = _produsRepository.GetById(id);
-                _produsRepository.Remove(produs);
-                return new OkObjectResult("Model deleted");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            Produs produs = _produsRepository.GetById(id);
+            _produsRepository.Remove(produs);
+            _produsRepository.SaveChanges();
+            return new OkObjectResult("Model deleted");
 
         }
     }

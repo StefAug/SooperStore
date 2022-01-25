@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Domain.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,24 @@ using System.Threading.Tasks;
 
 namespace SooperStore.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/userrol")]
     [ApiController]
     public class UserRolController : ControllerBase
     {
+        private readonly IUserRolRepository _userRolRepository;
+        public UserRolController(IUserRolRepository userRolRepository)
+        {
+            _userRolRepository = userRolRepository;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+
+            return Ok(_userRolRepository.GetAll());
+
+        }
+
+      
     }
 }

@@ -17,7 +17,7 @@
                 <h3 class="mb-0">Produse</h3>
               </div>            
               <div class="col text-right">
-                <a class="btn btn-sm btn-primary" >Adauga Produs</a>
+                <a class="btn btn-sm btn-primary" [routerLink]="['/dashboard/addprodus']" >Adauga Produs</a>
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@
           </div> -->
           <div class="table-responsive">
 
-            <p-table [value]="products" tableStyleClass="table align-items-center table-flush" [paginator]="true" [rows]="3">
+            <p-table #dt [value]="products" tableStyleClass="table align-items-center table-flush" [paginator]="true" [rows]="3">
               <ng-template pTemplate="header">
                   <tr>
                     <th scope="col">Nume Produs</th>
@@ -61,12 +61,13 @@
                   <td>
                     {{produs.stoc}}
                   </td>
-                  <!-- <td>
-                    <a class="btn btn-success pull-right button_margins fa fa-edit" [routerLink]="['/editprodus', produs.id]"></a>
-                  </td>
                   <td>
                     <a class="btn btn-success pull-right button_margins fa fa-times" (click)='delete(produs.id)'></a>
                   </td>
+                  <!-- <td>
+                    <a class="btn btn-success pull-right button_margins fa fa-edit" [routerLink]="['/editprodus', produs.id]"></a>
+                  </td>
+
                   <td>
                     <a class="btn btn-success pull-right fa fa-plus" (click)='addItem(produs)'></a>
                   </td>

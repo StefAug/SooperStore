@@ -13,4 +13,16 @@ export class ProdusService {
     return this.http.get<Produs[]>(this.baseUrl)
   }
 
+  deleteProduct(id: number): Observable<any>{
+    return this.http.delete<any>(this.baseUrl+"/"+id);
+  }
+
+  getProduct(id: number): Observable<Produs>{
+    return this.http.get<Produs>(this.baseUrl+"/"+id);
+  }
+
+  createProduct(model: Produs): Observable<any>{
+    return this.http.post<Produs>(this.baseUrl,model);
+  }
+
 }
