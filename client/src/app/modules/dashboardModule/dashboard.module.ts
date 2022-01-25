@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard';
 import { DashboardRoutingModule } from './dashboard.route';
+import { TableModule } from 'primeng/table';
+import { ProdusService } from 'src/app/services/produs.service';
 
 
 @NgModule({
@@ -9,8 +11,9 @@ import { DashboardRoutingModule } from './dashboard.route';
     DashboardComponent
   ],
   imports: [
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    TableModule
   ],
-  providers: []
+  providers: [ProdusService]
 })
 export class DashboardModule { }
