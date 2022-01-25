@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Domain.Interfaces
 {
-    public interface IDeveloperRepository : IGenericRepository<Developer>
+    public interface IComandaRepository : IGenericRepository<Comanda>
     {
-        IEnumerable<Developer> GetPopularDevelopers(int count);
     }
 }

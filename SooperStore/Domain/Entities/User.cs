@@ -7,6 +7,7 @@ namespace Domain.Entities
     public class User
     {
         public int Id { get; set; }
+        public string Nume { get; set; }
         public virtual ICollection<UserRol> UserRols { get; set; }
         public virtual Cos Cos { get; set; }
 

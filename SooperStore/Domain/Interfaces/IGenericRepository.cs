@@ -15,5 +15,6 @@ namespace Domain.Interfaces
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
         void SaveChanges();
+        void Update(T entity);
     }
 }

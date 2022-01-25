@@ -2,22 +2,24 @@
 
 namespace DataAccess.Migrations
 {
-    public partial class Test : Migration
+    public partial class Intermediar : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Developers",
+                name: "Produse",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Followers = table.Column<int>(type: "int", nullable: false)
+                    Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Descriere = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Stoc = table.Column<int>(type: "int", nullable: false),
+                    Pret = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Developers", x => x.Id);
+                    table.PrimaryKey("PK_Produse", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,7 +40,8 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nume = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,38 +92,40 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Produse",
+                name: "Comanda",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nume = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Descriere = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Stoc = table.Column<int>(type: "int", nullable: false),
-                    Pret = table.Column<double>(type: "float", nullable: false),
+                    IdProdus = table.Column<int>(type: "int", nullable: false),
                     IdCos = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Produse", x => x.Id);
+                    table.PrimaryKey("PK_Comanda", x => new { x.IdCos, x.IdProdus });
                     table.ForeignKey(
-                        name: "FK_Produse_Cos_IdCos",
+                        name: "FK_Comanda_Cos_IdCos",
                         column: x => x.IdCos,
                         principalTable: "Cos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comanda_Produse_IdProdus",
+                        column: x => x.IdProdus,
+                        principalTable: "Produse",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comanda_IdProdus",
+                table: "Comanda",
+                column: "IdProdus",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cos_IdUser",
                 table: "Cos",
                 column: "IdUser",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Produse_IdCos",
-                table: "Produse",
-                column: "IdCos");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRols_IdRol",
@@ -131,16 +136,16 @@ namespace DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Developers");
-
-            migrationBuilder.DropTable(
-                name: "Produse");
+                name: "Comanda");
 
             migrationBuilder.DropTable(
                 name: "UserRols");
 
             migrationBuilder.DropTable(
                 name: "Cos");
+
+            migrationBuilder.DropTable(
+                name: "Produse");
 
             migrationBuilder.DropTable(
                 name: "Rols");

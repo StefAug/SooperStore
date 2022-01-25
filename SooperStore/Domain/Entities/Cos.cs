@@ -11,7 +11,7 @@ namespace Domain.Entities
         public int IdUser { get; set; }
 
         public virtual User User { get; set; }
-        public virtual ICollection<Produs> Produse { get; set; }
+        public virtual ICollection<Comanda> Comanda { get; set; }
 
     }
 }

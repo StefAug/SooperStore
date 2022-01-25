@@ -18,6 +18,22 @@ namespace DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Domain.Entities.Comanda", b =>
+                {
+                    b.Property<int>("IdCos")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdProdus")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdCos", "IdProdus");
+
+                    b.HasIndex("IdProdus")
+                        .IsUnique();
+
+                    b.ToTable("Comanda");
+                });
+
             modelBuilder.Entity("Domain.Entities.Cos", b =>
                 {
                     b.Property<int>("Id")
@@ -36,24 +52,6 @@ namespace DataAccess.Migrations
                     b.ToTable("Cos");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Developer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Followers")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Developers");
-                });
-
             modelBuilder.Entity("Domain.Entities.Produs", b =>
                 {
                     b.Property<int>("Id")
@@ -63,9 +61,6 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Descriere")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdCos")
-                        .HasColumnType("int");
 
                     b.Property<string>("Nume")
                         .HasColumnType("nvarchar(max)");
@@ -77,8 +72,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdCos");
 
                     b.ToTable("Produse");
                 });
@@ -105,6 +98,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Nume")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("User");
@@ -125,6 +121,25 @@ namespace DataAccess.Migrations
                     b.ToTable("UserRols");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Comanda", b =>
+                {
+                    b.HasOne("Domain.Entities.Cos", "Cos")
+                        .WithMany("Comanda")
+                        .HasForeignKey("IdCos")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Produs", "Produs")
+                        .WithOne("Comanda")
+                        .HasForeignKey("Domain.Entities.Comanda", "IdProdus")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cos");
+
+                    b.Navigation("Produs");
+                });
+
             modelBuilder.Entity("Domain.Entities.Cos", b =>
                 {
                     b.HasOne("Domain.Entities.User", "User")
@@ -134,17 +149,6 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Produs", b =>
-                {
-                    b.HasOne("Domain.Entities.Cos", "Cos")
-                        .WithMany("Produse")
-                        .HasForeignKey("IdCos")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cos");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserRol", b =>
@@ -168,7 +172,12 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Domain.Entities.Cos", b =>
                 {
-                    b.Navigation("Produse");
+                    b.Navigation("Comanda");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Produs", b =>
+                {
+                    b.Navigation("Comanda");
                 });
 
             modelBuilder.Entity("Domain.Entities.Rol", b =>

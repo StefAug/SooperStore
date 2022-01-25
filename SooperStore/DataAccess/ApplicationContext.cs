@@ -11,7 +11,6 @@ namespace DataAccess
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
         }
-        public DbSet<Developer> Developers { get; set; }
         public DbSet<Cos> Cos { get; set; }
         public DbSet<Produs> Produse { get; set; }
         public DbSet<Rol> Rols { get; set; }
@@ -32,10 +31,23 @@ namespace DataAccess
                 .WithMany(c => c.UserRols)
                 .HasForeignKey(bc => bc.IdRol);
 
-            modelBuilder.Entity<Produs>()
-            .HasOne<Cos>(s => s.Cos)
-            .WithMany(g => g.Produse)
-            .HasForeignKey(s => s.IdCos);
+            modelBuilder.Entity<Comanda>()
+                .HasKey(bc => new { bc.IdCos, bc.IdProdus });
+
+            modelBuilder.Entity<Comanda>()
+            .HasOne(bc => bc.Cos)
+            .WithMany(b => b.Comanda)
+            .HasForeignKey(bc => bc.IdCos);
+
+            modelBuilder.Entity<Comanda>()
+            .HasOne(bc => bc.Produs)
+            .WithOne(b => b.Comanda)
+            .HasForeignKey<Comanda>(bc => bc.IdProdus);
+
+            //modelBuilder.Entity<Produs>()
+            //.HasOne<Cos>(s => s.Cos)
+            //.WithMany(g => g.Produse)
+            //.HasForeignKey(s => s.IdCos);
 
             modelBuilder.Entity<User>()
             .HasOne<Cos>(s => s.Cos)

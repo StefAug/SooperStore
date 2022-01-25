@@ -11,7 +11,6 @@ namespace Domain.Entities
         public string Descriere { get; set; }
         public int Stoc { get; set; }
         public double Pret { get; set; }
-        public int IdCos { get; set; }
-        public virtual Cos Cos { get; set; }
+        public virtual Comanda Comanda { get; set; }
     }
 }

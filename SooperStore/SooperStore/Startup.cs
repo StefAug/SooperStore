@@ -34,12 +34,22 @@ namespace SooperStore
          b => b.MigrationsAssembly(typeof(ApplicationContext).Assembly.FullName)));
 
         services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-        services.AddTransient<IDeveloperRepository, DeveloperRepository>();
             services.AddTransient<ICosRepository, CosRepository>();
             services.AddTransient<IProdusRepository, ProdusRepository>();
             services.AddTransient<IRolRepository, RolRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserRolRepository, UserRolRepository>();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44308", "http://localhost:4200")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
 
         }
 
@@ -63,6 +73,14 @@ namespace SooperStore
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
 
             app.UseEndpoints(endpoints =>
