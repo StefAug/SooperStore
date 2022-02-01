@@ -24,7 +24,7 @@ export class AddProdusComponent implements OnInit {
   }
   
   add(){
-   this._produsService.createProduct(this.entity).subscribe();   
-   this.router.navigate(['dashboard']);
+   this._produsService.createProduct(this.entity).subscribe(() => this.router.navigate(['dashboard']));   
+   
   }
 }

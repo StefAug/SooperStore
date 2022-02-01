@@ -26,6 +26,13 @@ namespace SooperStore.Controllers
 
         }
 
-      
+        [HttpGet("userid/{userid}")]
+        public async Task<IActionResult> GetRolesByUserId(int userId)
+        {
+            var items = _userRolRepository.GetRolesByUserId(userId);
+            return new OkObjectResult(items);
+        }
+
+
     }
 }

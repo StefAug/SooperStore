@@ -2,7 +2,7 @@
 
 namespace DataAccess.Migrations
 {
-    public partial class Intermediar : Migration
+    public partial class Final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

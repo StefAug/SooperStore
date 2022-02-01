@@ -27,6 +27,13 @@ namespace SooperStore.Controllers
            
         }
 
+        [HttpGet("pricier/{count}")]
+        public async Task<IActionResult> GetPricierProducts(int count)
+        {
+            var items = _produsRepository.GetPricierProducts(count);
+            return new OkObjectResult(items);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {

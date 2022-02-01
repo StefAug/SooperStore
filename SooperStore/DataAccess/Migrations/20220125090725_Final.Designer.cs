@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220125060046_Intermediar")]
-    partial class Intermediar
+    [Migration("20220125090725_Final")]
+    partial class Final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

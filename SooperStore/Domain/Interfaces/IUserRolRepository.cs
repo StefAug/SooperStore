@@ -7,5 +7,6 @@ namespace Domain.Interfaces
 {
     public interface IUserRolRepository : IGenericRepository<UserRol>
     {
+        IEnumerable<Rol> GetRolesByUserId(int id);
     }
 }

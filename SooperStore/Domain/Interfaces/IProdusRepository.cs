@@ -7,5 +7,6 @@ namespace Domain.Interfaces
 {
     public interface IProdusRepository : IGenericRepository<Produs>
     {
+        IEnumerable<Produs> GetPricierProducts(int count);
     }
 }
